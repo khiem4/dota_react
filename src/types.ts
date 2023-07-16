@@ -1,4 +1,4 @@
-export interface heroStats {
+export interface Hero {
     id: number,
     name: string,
     localized_name: string,
@@ -34,28 +34,85 @@ export interface heroStats {
     legs: number,
     day_vision: number,
     night_vision: number,
+}
+
+export interface HeroStats extends Hero {
     hero_id: number,
     turbo_picks: number,
     turbo_wins: number,
     pro_ban: number,
     pro_win: number,
     pro_pick: number,
-    // 1_pick: 3396,
-    // 1_win: 1693,
-    // 2_pick: 24720,
-    // 2_win: 12430,
-    // 3_pick: 58316,
-    // 3_win: 29149,
-    // 4_pick: 61902,
-    // 4_win: 30533,
-    // 5_pick: 35338,
-    // 5_win: 17292,
-    // 6_pick: 15148,
-    // 6_win: 7414,
-    // 7_pick: 6654,
-    // 7_win: 3172,
-    // 8_pick: 2545,
-    // 8_win: 1161,
-    // null_pick: 2069735,
-    //     null_win: 0
+    '1_pick': number,
+    '1_win': number,
+    '2_pick': number,
+    '2_win': number,
+    '3_pick': number,
+    '3_win': number,
+    '4_pick': number,
+    '4_win': number,
+    '5_pick': number,
+    '5_win': number,
+    '6_pick': number,
+    '6_win': number,
+    '7_pick': number,
+    '7_win': number,
+    '8_pick': number,
+    '8_win': number,
+    'null_pick': number,
+    'null_win': number
 }
+
+export interface HeroAbilities {
+    [x: string]: {
+        dname: string,
+        behavior: string,
+        bkbpierce: string,
+        dispellable: string,
+        desc: string,
+        dmg: string,
+        attrib: [
+            {
+                key: string,
+                header: string,
+                value: string
+            },
+            {
+                key: string,
+                header: string,
+                value: string
+            },
+            {
+                key: string,
+                header: string,
+                value: [
+                    string,
+                    string,
+                    string,
+                    string
+                ]
+            },
+            {
+                key: string,
+                header: string,
+                value: string,
+                generated: boolean
+            }
+        ],
+        lore: string,
+        mc: [
+            string,
+            string,
+            string,
+            string
+        ],
+        cd: [
+            string,
+            string,
+            string,
+            string
+        ],
+        img: string
+    },
+}
+
