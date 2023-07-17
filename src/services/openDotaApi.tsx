@@ -8,6 +8,11 @@ export async function getHeroStats() {
 }
 
 export async function getHeroAbilities() {
+    const response = await axios.get(`${Base_Url}/constants/hero_abilities`)
+    return response.data
+}
+
+export async function getAbilities() {
     const response = await axios.get(`${Base_Url}/constants/abilities`)
     return response.data
 }
