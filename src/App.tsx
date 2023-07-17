@@ -1,24 +1,43 @@
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
-import HeroStats from './components/HeroStats'
-import Hero from './components/Hero'
+import HeroAbilities from './components/HeroAbilities'
 import Footer from './components/Footer'
+import HeroStats from './components/HeroeStats'
+import { useEffect, useState } from 'react'
+import { getHeroStats } from './services/openDotaApi'
 
 function App() {
-  return (
-    <>
+  const [heroes, setHeroes] = useState<HeroStats[]>()
+
+  useEffect(() => {
+    (async () => {
+      const res = await getHeroStats()
+      setHeroes(res)
+    })()
+  }, [])
+
+  if (heroes) {
+    return (
       <BrowserRouter>
         <div>
           <Link style={{ padding: '5px' }} to="/">home</Link>
           <Link style={{ padding: '5px' }} to="/heroes">heroes</Link>
         </div>
         <Routes>
-          <Route path="/heroes" element={<HeroStats />} />
-          <Route path="/heroes/:id" element={<Hero />} />
+          <Route
+            path="/heroes"
+            element={<HeroStats heroes={heroes} />}
+          />
+          <Route
+            path="/heroes/:id"
+            element={<HeroAbilities heroes={heroes} />}
+          />
         </Routes>
         <Footer />
       </BrowserRouter>
-    </>
-  )
+    )
+  }
+
+  return null
 }
 
 export default App
