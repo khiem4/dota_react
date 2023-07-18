@@ -63,7 +63,7 @@ export interface HeroStats extends Hero {
     'null_win': number
 }
 
-export interface HeroAbilities {
+export interface Abilities {
     [x: string]: {
         dname: string,
         behavior: string,
@@ -75,44 +75,25 @@ export interface HeroAbilities {
             {
                 key: string,
                 header: string,
-                value: string
+                value: string | [string]
+                generated?: boolean
             },
-            {
-                key: string,
-                header: string,
-                value: string
-            },
-            {
-                key: string,
-                header: string,
-                value: [
-                    string,
-                    string,
-                    string,
-                    string
-                ]
-            },
-            {
-                key: string,
-                header: string,
-                value: string,
-                generated: boolean
-            }
         ],
         lore: string,
-        mc: [
-            string,
-            string,
-            string,
-            string
-        ],
-        cd: [
-            string,
-            string,
-            string,
-            string
-        ],
+        mc: string | string[],
+        cd: string | string[],
         img: string
     },
 }
 
+export interface HeroAbilities {
+    [x: string]: {
+        abilities: String[],
+        talents: [
+            {
+                name: string,
+                level: number
+            },
+        ]
+    },
+}
